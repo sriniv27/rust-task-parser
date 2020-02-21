@@ -1,5 +1,5 @@
 /target
 statusUpdate.csv
 Cargo.lock
-.vscode/launch.json
-.vscode/tasks.json
+.vscode/**
+.vscode/**
