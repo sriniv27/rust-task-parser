@@ -11,15 +11,30 @@ use std::process;
 // ordered as:
 
 //     ID,Status,Subject,CreatedOn,ModifiedOn,CompletedOn
-type Task = (String, String, String, String, String, String);
-
+// type Task = (String, String, String, String, String, String);
+#[derive(Debug,Serialize, Deserialize)]
+struct Task { 
+    id: String,
+    status: Status,
+    subject: String,
+    created_on : String,
+    modified_on: String,
+    completed_on:String
+}
+#[derive(Deserialize, Serialize, Debug)]
+enum Status{
+    NotStarted,
+    InProgress,
+    Complete
+}
 fn main_func() -> Result<(), Box<dyn Error>> {
     let filename = "statusUpdate.csv";
     let mut data_reader = csv::Reader::from_path(filename).expect("could not read from file");
-    for item in data_reader.deserialize() {
-        let task: Task = item?;
-        println!("Task: {:?}", task);
+    let mut iter  = data_reader.deserialize();
+    if let Some(res) = iter.next() {
+        let task_item: Task = res?;
     }
+    
     Ok(())
 }
 

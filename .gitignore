@@ -3,3 +3,4 @@ statusUpdate.csv
 Cargo.lock
 .vscode/**
 .vscode/**
+*.code-workspace
